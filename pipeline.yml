@@ -60,7 +60,7 @@ jobs:
         - |
           apt-get update
           apt-get install -y curl
-          curl https://bl.ocks.org/sharor/raw/4b2015849c31bfb860c6a021ba9ed63a/
+          curl https://bl.ocks.org/JKrag/raw/4b2015849c31bfb860c6a021ba9ed63a/
     on_failure:
       put: slack-alert
       params:
@@ -81,7 +81,7 @@ jobs:
         args:
         - -exc
         - |
-          linkchecker http://bl.ocks.org/sharor/raw/4b2015849c31bfb860c6a021ba9ed63a/
+          linkchecker http://bl.ocks.org/JKrag/raw/4b2015849c31bfb860c6a021ba9ed63a/
     on_failure:
       put: slack-alert
       params:
@@ -104,24 +104,23 @@ resources:
 - name: repository
   type: git
   source:
-    uri: https://github.com/Sharor/concourse-workshop.git
+    uri: https://github.com/JKrag/concourse-workshop.git
     branch: master
-    username: {{github-username}}
     password: {{github-password}}
 
 - name: gist
   type: git 
   source: 
-    uri: git@gist.github.com:4b2015849c31bfb860c6a021ba9ed63a.git
+    uri: https://gist.github.com/9dec1a576eaf46cc2b12cdc9a34cbdeb.git
     branch: master
-    private_key: {{concourse-token}}
+    username: {{github-username}}
+    password: {{github-password}}
 
 - name: github-pages
   type: git
   source: 
-    uri: https://github.com/Sharor/concourse-workshop.git
+    uri: https://github.com/JKrag/concourse-workshop.git
     branch: gh-pages
-    username: {{github-username}}
     password: {{github-password}}
 
 - name: slack-alert
